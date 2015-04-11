@@ -63,7 +63,7 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
                 try {
                     if (validate() > 0 ) {
                         DBHelper sql = new DBHelper(this);
-                        if (sql.checkName(tfTitle.getText().toString())) {
+                        if (sql.checkName(tfTitle.getText().toString()) || appointment.getTitle().equals(tfTitle.getText().toString())) {
                             appointment.setTime(tfTime.getText().toString());
                             appointment.setTitle(tfTitle.getText().toString());
                             appointment.setDetail(tfDetail.getText().toString());
