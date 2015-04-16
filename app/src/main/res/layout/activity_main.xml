@@ -2,13 +2,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    android:gravity="center|center_vertical|center_horizontal"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="212dp"
         android:gravity="center_vertical|center_horizontal"
         android:focusable="true"
         android:focusableInTouchMode="true">
@@ -16,9 +16,9 @@
         <CalendarView
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="268dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:minHeight="268dp"
+            android:minHeight="150dp"
             android:focusable="true" />
     </LinearLayout>
 
@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/layoutButtonHome">
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -53,24 +53,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/view_edit" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-
-                android:layout_gravity="center">
 
                 <Button
                     android:id="@+id/btnMove"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/move" />
-
-                <Button
-                    android:id="@+id/btnDelete"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/delete" />
             </TableRow>
 
             <TableRow
@@ -78,6 +66,13 @@
 
                 android:layout_gravity="center">
 
+
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete" />
                 <Button
                     android:id="@+id/btnSearch"
                     android:layout_width="fill_parent"
@@ -90,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/translate" />
             </TableRow>
+
 
         </TableLayout>
 
