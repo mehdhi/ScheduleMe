@@ -4,5 +4,11 @@
     <string name="app_name">ScheduleMe</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="view_edit">View / Edit</string>
+    <string name="create">Create</string>
+    <string name="move">Move</string>
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
+    <string name="translate">Translate</string>
 
 </resources>
