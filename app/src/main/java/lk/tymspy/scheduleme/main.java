@@ -5,10 +5,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 
 public class Main extends ActionBarActivity {
 
     CalendarView calendar;
+    private Date selectedDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,8 @@ public class Main extends ActionBarActivity {
             //show the selected date as a toast
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Toast.makeText(getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+                selectedDate = new Date(year, month, day);
+                //Toast.makeText(getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
         });
     }
