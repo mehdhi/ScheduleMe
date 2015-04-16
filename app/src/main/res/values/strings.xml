@@ -10,5 +10,10 @@
     <string name="delete">Delete</string>
     <string name="search">Search</string>
     <string name="translate">Translate</string>
+    <string name="title_activity_add_appointment">Add Appointment</string>
+    <string name="title_activity_view_edit_appoinment">View Edit Appoinment</string>
+    <string name="title_activity_delete_appoinment">Delete Appoinment</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_translate">Translate</string>
 
 </resources>

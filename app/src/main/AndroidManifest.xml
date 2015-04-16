@@ -16,6 +16,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddAppointment"
+            android:label="@string/title_activity_add_appointment" >
+        </activity>
+        <activity
+            android:name=".ViewEditAppoinment"
+            android:label="@string/title_activity_view_edit_appoinment" >
+        </activity>
+        <activity
+            android:name=".DeleteAppoinment"
+            android:label="@string/title_activity_delete_appoinment" >
+        </activity>
+        <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name=".Translate"
+            android:label="@string/title_activity_translate" >
+        </activity>
     </application>
 
 </manifest>
