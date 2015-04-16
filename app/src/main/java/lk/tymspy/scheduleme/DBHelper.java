@@ -6,15 +6,15 @@ package lk.tymspy.scheduleme;
  */
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getData(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from "+ APPOINMENT_TABLE_NAME +" where id=" + id + "", null);
+        Cursor res = db.rawQuery("select * from " + APPOINMENT_TABLE_NAME + " where id=" + id + "", null);
         return res;
     }
 
@@ -97,7 +97,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList getAllAppointments() {
         ArrayList array_list = new ArrayList();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from "+ APPOINMENT_TABLE_NAME, null);
+        Cursor res = db.rawQuery("select * from " + APPOINMENT_TABLE_NAME, null);
         res.moveToFirst();
         while (res.isAfterLast() == false) {
             array_list.add(res.getString(res.getColumnIndex(APPOINMENT_COLUMN_TITLE)));
