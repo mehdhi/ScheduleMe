@@ -14,6 +14,7 @@ gen/
 
 # Gradle files
 .gradle/
+gradle/
 build/
 /*/build/
 
@@ -25,8 +26,11 @@ proguard/
 
 # Log Files
 *.log
+.idea/
 .idea/libraries/appcompat_v7_21_0_3.xml
 .idea/libraries/support_annotations_21_0_3.xml
 .idea/libraries/support_v4_21_0_3.xml
 app/app.iml
 .idea/workspace.xml
+
+settings.gradle
