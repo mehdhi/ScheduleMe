@@ -1,18 +1,23 @@
 package lk.tymspy.scheduleme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
 public class Main extends ActionBarActivity implements View.OnClickListener {
 
     CalendarView calendar;
-    private Date selectedDate = null;
+    private String selectedDate = null;
     private Button btnCreate, btnViewEdit, btnMove, btnDelete, btnSearch, btnTranslate, btnExit, btnAbout;
 
 
@@ -56,7 +61,7 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
             //show the selected date as a toast
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                selectedDate = new Date(year, month, day);
+                selectedDate = year + "/" + month + "/" + day ;
                 //Toast.makeText(getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
         });
@@ -112,6 +117,14 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void createAppointment(){
+        Intent intent = new Intent(this, AddAppointment.class);
+        if ( selectedDate == null ){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            selectedDate = df.format(c.getTime());
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        startActivity(intent);
 
     }
 

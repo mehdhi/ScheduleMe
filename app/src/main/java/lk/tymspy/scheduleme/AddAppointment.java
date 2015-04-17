@@ -21,6 +21,8 @@ public class AddAppointment extends ActionBarActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
         this.initializeComponents();
+        Intent g = getIntent();
+        appointment.setDate(g.getStringExtra(Appointment.KEY_DATE));
     }
 
     private void initializeComponents() {
@@ -51,21 +53,19 @@ public class AddAppointment extends ActionBarActivity implements View.OnClickLis
                 boolean worked = true;
                 try {
                     if (validate()) {
-//                        DBHelper sql = new DBHelper(this);
-//                        sql.open();
-//                        if (sql.checkname(tfTitle.getText().toString())) {
-//                            appointment.setDate(CW2Activity.Date1);
-//                            appointment.setTime(tfTime.getText().toString());
-//                            appointment.setTitle(tfTitle.getText().toString());
-//                            appointment.setDetail(tfDetail.getText().toString());
-//
-//                            sql.createEntry();
-//                        } else {
-//                            Dialog k = new Dialog(this);
-//                            k.setTitle("Already Exists");
-//                            worked = false;
-//                        }
-//                        sql.close();
+                        DBHelper sql = new DBHelper(this);
+                        if (sql.checkName(tfTitle.getText().toString())) {
+                            appointment.setTime(tfTime.getText().toString());
+                            appointment.setTitle(tfTitle.getText().toString());
+                            appointment.setDetail(tfDetail.getText().toString());
+
+                            sql.insertAppointment(appointment);
+                        } else {
+                            Dialog k = new Dialog(this);
+                            k.setTitle("Already Exists");
+                            worked = false;
+                        }
+                        sql.close();
                     } else {
                         worked = false;
                     }

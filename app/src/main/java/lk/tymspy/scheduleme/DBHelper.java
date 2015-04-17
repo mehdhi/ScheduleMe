@@ -12,9 +12,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -25,9 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String APPOINMENT_COLUMN_TIME = "time";
     public static final String APPOINMENT_COLUMN_TITLE = "title";
     public static final String APPOINMENT_COLUMN_DETAIL = "detail";
-    public static final String APPOINMENT_COLUMN_VENUE = "venue";
 
-    private HashMap hp;
+    //private HashMap hp;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -37,8 +37,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table contacts " +
-                        "(id integer primary key, name text,phone text,email text, street text,place text)"
+                "create table " + APPOINMENT_TABLE_NAME +
+                        " ("
+                        + APPOINMENT_COLUMN_ID + " integer primary key autoincrement, "
+                        + APPOINMENT_COLUMN_TITLE + " text not null, "
+                        + APPOINMENT_COLUMN_DATE + " text not null, "
+                        + APPOINMENT_COLUMN_TIME + " text not null, "
+                        + APPOINMENT_COLUMN_DETAIL + " text not null " +
+                        ");"
         );
     }
 
@@ -49,15 +55,14 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertAppointment(String title, String detail, String date, String time, String venue) {
+    public boolean insertAppointment(Appointment appointment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(APPOINMENT_COLUMN_TITLE, title);
-        contentValues.put(APPOINMENT_COLUMN_DETAIL, detail);
-        contentValues.put(APPOINMENT_COLUMN_DATE, date);
-        contentValues.put(APPOINMENT_COLUMN_TIME, time);
-        contentValues.put(APPOINMENT_COLUMN_VENUE, venue);
+        contentValues.put(APPOINMENT_COLUMN_TITLE, appointment.getTitle());
+        contentValues.put(APPOINMENT_COLUMN_DETAIL, appointment.getDetail());
+        contentValues.put(APPOINMENT_COLUMN_DATE, appointment.getDate());
+        contentValues.put(APPOINMENT_COLUMN_TIME, appointment.getTime());
 
         db.insert(APPOINMENT_TABLE_NAME, null, contentValues);
         return true;
@@ -75,14 +80,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateAppointment(Integer id, String title, String detail, String date, String time, String venue) {
+    public boolean updateAppointment(Integer id, String title, String detail, String date, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(APPOINMENT_COLUMN_TITLE, title);
         contentValues.put(APPOINMENT_COLUMN_DETAIL, detail);
         contentValues.put(APPOINMENT_COLUMN_DATE, date);
         contentValues.put(APPOINMENT_COLUMN_TIME, time);
-        contentValues.put(APPOINMENT_COLUMN_VENUE, venue);
         db.update(APPOINMENT_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(id)});
         return true;
     }
@@ -104,5 +108,24 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
+
+    public boolean checkName(String s) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.query(APPOINMENT_TABLE_NAME, null, APPOINMENT_COLUMN_TITLE+" like '%" + s + "%'", null, null, null, null);
+        if (c != null) {
+            int x = 0;
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                x++;
+            }
+            if (x < 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+
     }
 }

@@ -5,12 +5,14 @@ package lk.tymspy.scheduleme;
  */
 
 import java.sql.Date;
+import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Appointment {
 
+    public static final String KEY_DATE = "KEY_DATE";
     //Items of Appointment
     private String date;
     private String time;
@@ -21,18 +23,19 @@ public class Appointment {
     public void setDate(String date)
     {
         this.date = date;
-        DateFormat formatter = new SimpleDateFormat("YYYYMMDDThhmm");
-        Date fileDate = null;
-
-        try
-        {
-            fileDate = (Date)formatter.parse(date);
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        this.date = fileDate.toString();
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+//        Date fileDate = null;
+//
+//        try
+//        {
+//            fileDate = (Date)formatter.parse(date);
+//        }
+//        catch (ParseException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        this.date = fileDate.toString();
+//        System.out.println("DATE:" + fileDate.toString());
     }
 
     public String getDate() {
