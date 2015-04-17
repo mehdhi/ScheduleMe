@@ -68,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getData(int id) {
+    public Cursor getDataByID(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from " + APPOINMENT_TABLE_NAME + " where id=" + id + "", null);
         return res;
@@ -127,5 +127,23 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    public Cursor getDataByTitle( String s ){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + APPOINMENT_TABLE_NAME + " where "+APPOINMENT_COLUMN_TITLE+"=" + s + "", null);
+        return res;
+    }
+
+    public ArrayList getAllAppointmentsByDate(String s) {
+        ArrayList array_list = new ArrayList();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select * from " + APPOINMENT_TABLE_NAME +" where "+APPOINMENT_COLUMN_DATE+"=" + s + "", null);
+        res.moveToFirst();
+        while (res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(APPOINMENT_COLUMN_TITLE)));
+            res.moveToNext();
+        }
+        return array_list;
     }
 }
