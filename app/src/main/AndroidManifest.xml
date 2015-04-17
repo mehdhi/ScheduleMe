@@ -36,6 +36,10 @@
             android:name=".Translate"
             android:label="@string/title_activity_translate" >
         </activity>
+        <activity
+            android:name=".Move"
+            android:label="@string/title_activity_move" >
+        </activity>
     </application>
 
 </manifest>

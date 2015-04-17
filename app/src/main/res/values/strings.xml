@@ -11,9 +11,23 @@
     <string name="search">Search</string>
     <string name="translate">Translate</string>
     <string name="title_activity_add_appointment">Add Appointment</string>
-    <string name="title_activity_view_edit_appoinment">View Edit Appoinment</string>
-    <string name="title_activity_delete_appoinment">Delete Appoinment</string>
+    <string name="title_activity_view_edit_appoinment">View Edit Appointment</string>
+    <string name="title_activity_delete_appoinment">Delete Appointment</string>
     <string name="title_activity_search">Search</string>
     <string name="title_activity_translate">Translate</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_time">Time of Appointment</string>
+    <string name="hint_detail">Details of Appointment</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <!--
+    string name="hint_">Translate</string>
+    <string name="hint_">Translate</string>
+    <string name="hint_">Translate</string>
+    <string name="hint_">Translate</string>
+    <string name="hint_">Translate</string
+    -->
+
+    <string name="title_activity_move">Move the Appointment</string>
 
 </resources>
