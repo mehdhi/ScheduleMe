@@ -50,7 +50,7 @@ public class AddAppointment extends ActionBarActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSave:
-                boolean worked = true;
+                int worked = 1;
                 try {
                     if (validate()) {
                         DBHelper sql = new DBHelper(this);
@@ -58,31 +58,31 @@ public class AddAppointment extends ActionBarActivity implements View.OnClickLis
                             appointment.setTime(tfTime.getText().toString());
                             appointment.setTitle(tfTitle.getText().toString());
                             appointment.setDetail(tfDetail.getText().toString());
-
                             sql.insertAppointment(appointment);
                         } else {
-                            Dialog k = new Dialog(this);
-                            k.setTitle("Already Exists");
-                            worked = false;
+                            worked = 0;
                         }
                         sql.close();
                     } else {
-                        worked = false;
+                        worked = -1;
                     }
                 } catch (Exception e) {
-                    worked = false;
+                    worked = -1;
                 } finally {
                     Dialog d = new Dialog(this);
-                    TextView tv1 = new TextView(this);
-                    if (worked) {
-                        d.setTitle("Created");
+
+                    if (worked > 0) {
+                        d.setTitle("Successfully added.");
 
                         d.show();
                         Intent i = new Intent(this, Main.class);
                         startActivity(i);
                         finish();
+                    } else if (worked == 0 ) {
+                        d.setTitle("Duplicated Title");
+                        d.show();
                     } else {
-                        d.setTitle("Error");
+                        d.setTitle("Error!");
                         d.show();
                     }
                 }
