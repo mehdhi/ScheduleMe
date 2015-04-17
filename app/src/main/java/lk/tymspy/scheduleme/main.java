@@ -23,7 +23,7 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
         //sets the main layout of the activity
         setContentView(R.layout.activity_main);
 
-        //initializes the calendarview
+        //initializes the components
         initializeCalendar();
         initializeButtons();
     }
@@ -133,5 +133,10 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
 
     private void translate(){
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
