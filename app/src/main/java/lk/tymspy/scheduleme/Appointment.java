@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 public class Appointment {
 
     public static final String KEY_DATE = "KEY_DATE";
+    public static final String KEY_SEARCH_TERM = "KEY_SEARCH_TERM";
     //Items of Appointment
     private String date;
     private String time;

@@ -129,23 +129,52 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void viewEditAppointment(){
-
+        Intent intent = new Intent(this, ViewEditAppoinment.class);
+        if ( selectedDate == null ){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            selectedDate = df.format(c.getTime());
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        startActivity(intent);
     }
 
     private void moveAppointment(){
-
+        Intent intent = new Intent(this, Move.class);
+        if ( selectedDate == null ){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            selectedDate = df.format(c.getTime());
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        startActivity(intent);
     }
 
     private void deleteAppointment(){
-
+        Intent intent = new Intent(this, DeleteAppoinment.class);
+        if ( selectedDate == null ){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            selectedDate = df.format(c.getTime());
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        startActivity(intent);
     }
 
     private void searchAppointment(){
-
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
     }
 
     private void translate(){
-
+        Intent intent = new Intent(this, Translate.class);
+        if ( selectedDate == null ){
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            selectedDate = df.format(c.getTime());
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        startActivity(intent);
     }
 
     @Override
