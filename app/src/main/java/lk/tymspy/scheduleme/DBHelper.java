@@ -169,6 +169,33 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList getAllAppointmentsByTitle(String date) {
+        ArrayList<Appointment> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] cols = new String[]{APPOINMENT_COLUMN_ID,APPOINMENT_COLUMN_TIME,APPOINMENT_COLUMN_TITLE,APPOINMENT_COLUMN_DETAIL};
+
+        Log.w("error", "Date = "+ date );
+        Cursor c = db.query(TABLE_NAME, cols,APPOINMENT_COLUMN_DATE+" = \""+ date + "\"", null, null, null, null);
+
+        if(c!=null) {
+            int iRow = c.getColumnIndex(APPOINMENT_COLUMN_ID);
+            int iTime = c.getColumnIndex(APPOINMENT_COLUMN_TIME);
+            int iDetail = c.getColumnIndex(APPOINMENT_COLUMN_DETAIL);
+            int iTitle = c.getColumnIndex(APPOINMENT_COLUMN_TITLE);
+
+            for(c.moveToFirst() ; !c.isAfterLast() ; c.moveToNext()) {
+                Appointment row = new Appointment();
+                row.setId(c.getString(iRow));
+                row.setDate(date);
+                row.setTime(c.getString(iTime));
+                row.setTitle(c.getString(iTitle));
+                row.setDetail(c.getString(iDetail));
+                list.add(row);
+            }
+        }
+        return list;
+
+    }
 
 
 }

@@ -50,14 +50,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.030411448" vertical-offset="2635" max-vertical-offset="3604">
-              <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3604">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#6415#6416#0" expanded="true" />
-                <element signature="e#6448#6449#0" expanded="true" />
+                <element signature="e#6481#6482#0" expanded="true" />
+                <element signature="e#6514#6515#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,11 +154,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBHelper.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DBHelper.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DBHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.285714" vertical-offset="1668" max-vertical-offset="2856">
-              <caret line="131" column="35" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.2960199" vertical-offset="2618" max-vertical-offset="3315">
+              <caret line="172" column="56" selection-start-line="172" selection-start-column="56" selection-end-line="172" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -738,7 +738,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Message.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Utility.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/EditAppointment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DBHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DeleteAppoinment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DeleteAppointment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Move.java" />
@@ -749,6 +748,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_appoinment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Viewing.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Main.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DBHelper.java" />
       </list>
     </option>
   </component>
@@ -1122,7 +1122,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3407155" sideWeight="0.5506808" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.197615" sideWeight="0.4493192" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.197615" sideWeight="0.4493192" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1239,8 +1239,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1105">
           <caret line="46" column="47" selection-start-line="46" selection-start-column="47" selection-end-line="46" selection-end-column="47" />
           <folding>
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6514#6515#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1334,8 +1334,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="4681" max-vertical-offset="5049">
           <caret line="280" column="23" selection-start-line="280" selection-start-column="23" selection-end-line="280" selection-end-column="23" />
           <folding>
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6514#6515#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1369,8 +1369,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1003">
           <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
           <folding>
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6514#6515#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1404,8 +1404,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6514#6515#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1613,14 +1613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.285714" vertical-offset="1668" max-vertical-offset="2856">
-          <caret line="131" column="35" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_appointment.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1666,12 +1658,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030411448" vertical-offset="2635" max-vertical-offset="3604">
-          <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3604">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6448#6449#0" expanded="true" />
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6514#6515#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/lk/tymspy/scheduleme/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2960199" vertical-offset="2618" max-vertical-offset="3315">
+          <caret line="172" column="56" selection-start-line="172" selection-start-column="56" selection-end-line="172" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -13,10 +13,10 @@ import java.util.Calendar;
 
 public class Main extends ActionBarActivity implements View.OnClickListener {
 
-    CalendarView calendar;
+    private CalendarView calendar;
     private String selectedDate = null;
     private Button btnCreate, btnViewEdit, btnMove, btnDelete, btnSearch, btnTranslate, btnExit, btnAbout;
-
+    private static final String DATE_FORMAT = "yyyy/MM/dd";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,7 +208,7 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
      */
     private String getCurrentDate (){
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT);
         return new String( df.format(c.getTime()) );
     }
 
