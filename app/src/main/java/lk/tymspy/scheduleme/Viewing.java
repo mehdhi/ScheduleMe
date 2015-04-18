@@ -18,7 +18,8 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
     public static final String MODE = "MODE";
     private int mode = 0;
     private String date = "";
-    private ArrayList data = null;
+    private int selection;
+    private ArrayList<Appointment> data = null;
     TextView tvDisplay;
     EditText tfId;
 
@@ -28,48 +29,54 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
         setContentView(R.layout.activity_viewing);
         tvDisplay = (TextView)findViewById(R.id.tvDisplay);
         tvDisplay.setMovementMethod(new ScrollingMovementMethod());
+        tfId = (EditText)findViewById(R.id.tfId);
+        View btnView = findViewById(R.id.btnView);
+        btnView.setOnClickListener(this);
+
         Intent i = getIntent();
         mode = i.getIntExtra(MODE,0);
         date = i.getStringExtra(Appointment.KEY_DATE);
-        try
-        {
-            DBHelper sqlview = new DBHelper(this);
-            data = sqlview.getAllAppointmentsByDate( date );
+
+        try {
+            DBHelper sql = new DBHelper(this);
+            data = sql.getAllAppointmentsByDate( date );
             if(data.size()>0){
-                String rows = "";
+                String result = "";
+
                 int x = 0;
                 Iterator iterator = data.iterator();
                 while (iterator.hasNext()) {
-                    rows += (x+1) + ". "+ data.get(x)+ "\n";
+                    Appointment row = data.get(x);
+                    result += ( x+1 ) +". " + row.getTitle() +"\n";
                     x++;
                 }
-                Dialog a = new Dialog(this);
-                a.setTitle(rows);
-                a.show();
+                tvDisplay.setText(result);
 
             }
-            sqlview.close();
+            sql.close();
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             Dialog a = new Dialog(this);
             a.setTitle(e.getMessage());
             a.show();
         }
-        tfId = (EditText)findViewById(R.id.tfId);
 
-        View btnView = findViewById(R.id.btnView);
-        btnView.setOnClickListener(this);
 
     }
 
-    private String getID(String i){
+    /**
+     * This function retrieves all data on a particular given date
+     * @param selection - user selection(int)
+     * @return String[] = {"ID","DATE","TIME","TITLE","DETAIL"}
+     */
+    private String[] getSelectedAppointment(int selection){
+        if (selection<1 && selection < data.size() ) return null;
         Iterator iterator = data.iterator();
         Integer x = 0;
-        while (iterator.hasNext() && Integer.parseInt(i) == x ) {
-            return (String) data.get(x);
+        while (iterator.hasNext() && x != selection ){
+            return Utility.convertAppointmentModelToString(data.get(selection));
         }
-        return "";
+        return null;
     }
 
     public void onClick(View v)
@@ -79,33 +86,50 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
             case R.id.btnView:
                 try
                 {
-                    if(mode == 1)
-                    {
-                        Intent i = new Intent(this, EditAppointment.class);
-                        i.putExtra(Appointment.KEY_ID,getID(tfId.getText().toString()));
-                        i.putExtra(Appointment.KEY_DATE, date);
-                        startActivity(i);
+
+                    if ( validate() ){
+                        if(mode == 1)
+                        {
+                            Intent i = new Intent(this, EditAppointment.class);
+                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
+                            startActivity(i);
+                        }
+                        else if(mode == 2)
+                        {
+                            Intent i = new Intent(this, MoveAppointment.class);
+                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
+                            startActivity(i);
+                        }
+                        else if(mode == 3)
+                        {
+                            Intent i = new Intent(this, Translate.class);
+                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
+                            startActivity(i);
+                        }
+                    } else  {
+                        Dialog dialog = new Dialog(this);
+                        dialog.setTitle("Invalid Selection");
+                        dialog.show();
                     }
-                    else if(mode == 2)
-                    {
-                        Intent i = new Intent(this, Move.class);
-                        i.putExtra(Appointment.KEY_ID,getID(tfId.getText().toString()));
-                        i.putExtra(Appointment.KEY_DATE, date);
-                        startActivity(i);
-                    }
-                    else if(mode == 3)
-                    {
-                        Intent i = new Intent(this, Translate.class);
-                        i.putExtra(Appointment.KEY_ID,getID(tfId.getText().toString()));
-                        i.putExtra(Appointment.KEY_DATE, date);
-                        startActivity(i);
-                    }
+
                 }
                 catch (Exception e)
                 {
                    throw e;
                 }
                 break;
+        }
+    }
+
+    private boolean validate(){
+        try {
+            selection = Integer.parseInt(tfId.getText().toString()) - 1;
+            if ( selection > 0 && selection <= data.size() ) {
+                return true;
+            }
+            return false;
+        } catch (Exception e){
+            return false;
         }
     }
 }

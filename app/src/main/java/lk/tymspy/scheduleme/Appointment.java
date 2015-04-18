@@ -14,30 +14,28 @@ public class Appointment {
 
     public static final String KEY_DATE = "KEY_DATE";
     public static final String KEY_ID = "KEY_ID";
-    public static final String KEY_TITLE = "KEY_TITLE";
+    public static final String KEY_APPOINMENT = "KEY_APPOINMENT";
+
+
     //Items of Appointment
+    private String id;
     private String date;
     private String time;
     private String title;
     private String detail;
 
     //Setter & Getter for Items of Appointment
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setDate(String date)
     {
         this.date = date;
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-//        Date fileDate = null;
-//
-//        try
-//        {
-//            fileDate = (Date)formatter.parse(date);
-//        }
-//        catch (ParseException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        this.date = fileDate.toString();
-//        System.out.println("DATE:" + fileDate.toString());
     }
 
     public String getDate() {

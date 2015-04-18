@@ -21,7 +21,7 @@
             android:label="@string/title_activity_add_appointment" >
         </activity>
         <activity
-            android:name=".DeleteAppoinment"
+            android:name=".DeleteAppointment"
             android:label="@string/title_activity_delete_appoinment" >
         </activity>
         <activity
@@ -33,7 +33,7 @@
             android:label="@string/title_activity_translate" >
         </activity>
         <activity
-            android:name=".Move"
+            android:name=".MoveAppointment"
             android:label="@string/title_activity_move" >
         </activity>
         <activity

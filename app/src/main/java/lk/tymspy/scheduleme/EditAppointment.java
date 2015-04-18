@@ -15,16 +15,14 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
     private Appointment appointment;
     private EditText tfTitle, tfTime, tfDetail;
     private TextView tvMessage;
-    private String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_appoinment);
-        this.initializeComponents();
         Intent g = getIntent();
-        appointment.setDate(g.getStringExtra(Appointment.KEY_DATE));
-        id = g.getStringExtra(Appointment.KEY_ID);
+        appointment = Utility.convertAppointmentStringToModel( g.getStringArrayExtra( Appointment.KEY_APPOINMENT ) );
+        this.initializeComponents();
     }
 
     private void initializeComponents() {
@@ -34,6 +32,10 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
         tfDetail = (EditText) findViewById(R.id.tfDetail);
         tfDetail.setMovementMethod(new ScrollingMovementMethod());
         tvMessage = (TextView) findViewById(R.id.tvMessage);
+
+        tfTitle.setText(appointment.getTitle());
+        tfDetail.setText(appointment.getDetail());
+        tfTime.setText(appointment.getTime());
 
         View update = findViewById(R.id.btnUpdate);
         update.setOnClickListener(this);
@@ -65,7 +67,7 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
                             appointment.setTime(tfTime.getText().toString());
                             appointment.setTitle(tfTitle.getText().toString());
                             appointment.setDetail(tfDetail.getText().toString());
-                            sql.updateAppointment(id, appointment);
+                            sql.updateAppointment(appointment);
                         } else {
                             worked = 0;
                         }
