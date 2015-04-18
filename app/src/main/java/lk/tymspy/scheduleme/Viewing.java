@@ -44,8 +44,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 String result = "";
 
                 int x = 0;
-                Iterator iterator = data.iterator();
-                while (iterator.hasNext()) {
+                for ( Appointment app : data ){
                     Appointment row = data.get(x);
                     result += ( x+1 ) +". " + row.getTitle() +"\n";
                     x++;

@@ -59,7 +59,7 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                 selectedDate = year + "/" + month + "/" + day ;
-                //Toast.makeText(getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+
             }
         });
     }
