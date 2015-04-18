@@ -2,6 +2,7 @@ package lk.tymspy.scheduleme;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class AddAppointment extends ActionBarActivity implements View.OnClickLis
         tfTitle = (EditText) findViewById(R.id.tfTitle);
         tfTime = (EditText) findViewById(R.id.tfTime);
         tfDetail = (EditText) findViewById(R.id.tfDetail);
+        tfDetail.setMovementMethod(new ScrollingMovementMethod());
         tvMessage = (TextView) findViewById(R.id.tvMessage);
 
         View save = findViewById(R.id.btnSave);

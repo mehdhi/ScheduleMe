@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine|textLongMessage"
             android:ems="10"
+            android:maxLines="15"
             android:id="@+id/tfDetail"
             android:editable="true"
             android:elegantTextHeight="true"

@@ -40,6 +40,10 @@
             android:name=".Move"
             android:label="@string/title_activity_move" >
         </activity>
+        <activity
+            android:name=".Viewing"
+            android:label="@string/title_activity_viewing" >
+        </activity>
     </application>
 
 </manifest>
