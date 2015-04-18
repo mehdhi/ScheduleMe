@@ -123,7 +123,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
     private boolean validate(){
         try {
             selection = Integer.parseInt(tfId.getText().toString()) - 1;
-            if ( selection > 0 && selection <= data.size() ) {
+            if ( selection >= 0 && selection < data.size() ) {
                 return true;
             }
             return false;

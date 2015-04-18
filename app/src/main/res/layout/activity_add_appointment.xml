@@ -46,6 +46,8 @@
             android:maxLines="10"
             android:id="@+id/tfDetail"
             android:editable="true"
+            android:scrollbars="vertical"
+            android:scrollbarFadeDuration="10"
             android:elegantTextHeight="true"
             android:minHeight="150dp"
             android:hint="@string/hint_detail"

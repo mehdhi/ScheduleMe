@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
+            android:scrollbars="vertical"
+            android:scrollbarFadeDuration="10"
             android:id="@+id/tvDisplay"
             android:maxLines="10"/>
 
