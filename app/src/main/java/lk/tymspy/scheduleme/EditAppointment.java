@@ -39,6 +39,10 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
         update.setOnClickListener(this);
     }
 
+    private void retrieveData(){
+
+    }
+
 
     @Override
     protected void onPause() {

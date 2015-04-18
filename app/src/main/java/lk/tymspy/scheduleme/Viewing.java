@@ -45,7 +45,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 }
                 Dialog a = new Dialog(this);
                 a.setTitle(rows);
-                a.show();;
+                a.show();
 
             }
             sqlview.close();
