@@ -36,25 +36,26 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
         tvDisplay = (TextView)findViewById(R.id.tvDisplay);
         tvDisplay.setMovementMethod(new ScrollingMovementMethod());
         tfId = (EditText)findViewById(R.id.tfId);
-        Button btnView = (Button)findViewById(R.id.btnView);
+        View btnView = (Button)findViewById(R.id.btnView);
         btnView.setOnClickListener(this);
 
         Intent i = getIntent();
         mode = i.getStringExtra(MODE);
         date = i.getStringExtra(Appointment.KEY_DATE);
 
-        if ( mode == MODE_EDIT ){
-            btnView.setText("View / Edit");
-        }
-        if ( mode == MODE_MOVE ){
-            btnView.setText("Move Appointment");
-        }
-        if ( mode == MODE_TRANSLATE ){
-            btnView.setText("Translate Appointment");
-        }
-        if ( mode == MODE_DELETE ){
-            btnView.setText("Delete");
-        }
+//        if ( mode == MODE_EDIT ){
+//            btnView.setText("View / Edit");
+//        }
+//        if ( mode == MODE_MOVE ){
+//            btnView.setText("Move Appointment");
+//        }
+//        if ( mode == MODE_TRANSLATE ){
+//            btnView.setText("Translate Appointment");
+//        }
+//        if ( mode == MODE_DELETE ){
+//            btnView.setText("Delete");
+//        }
+
         try {
             DBHelper sql = new DBHelper(this);
             data = sql.getAllAppointmentsByDate( date );
@@ -105,28 +106,36 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 {
 
                     if ( validate() ){
-                        if(mode == MODE_EDIT)
-                        {
-                            Intent i = new Intent(this, EditAppointment.class);
-                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
-                            startActivity(i);
+                        String[] selectedAppointment = getSelectedAppointment( selection );
+                        if ( selectedAppointment != null ){
+                            if(mode == MODE_EDIT)
+                            {
+                                Intent i = new Intent(this, EditAppointment.class);
+                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
+                                startActivity(i);
+                            }
+                            else if(mode == MODE_MOVE)
+                            {
+                                Intent i = new Intent(this, MoveAppointment.class);
+                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
+                                startActivity(i);
+                            }
+                            else if(mode == MODE_TRANSLATE)
+                            {
+                                Intent i = new Intent(this, Translate.class);
+                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
+                                startActivity(i);
+                            } else if (mode == MODE_DELETE ){
+                                Intent i = new Intent(this, DeleteAppointment.class);
+                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
+                                startActivity(i);
+                            }
+                        } else {
+                            Dialog dialog = new Dialog(this);
+                            dialog.setTitle("Invalid Selection");
+                            dialog.show();
                         }
-                        else if(mode == MODE_MOVE)
-                        {
-                            Intent i = new Intent(this, MoveAppointment.class);
-                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
-                            startActivity(i);
-                        }
-                        else if(mode == MODE_TRANSLATE)
-                        {
-                            Intent i = new Intent(this, Translate.class);
-                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
-                            startActivity(i);
-                        } else if (mode == MODE_DELETE ){
-                            Intent i = new Intent(this, DeleteAppointment.class);
-                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
-                            startActivity(i);
-                        }
+
                     } else  {
                         Dialog dialog = new Dialog(this);
                         dialog.setTitle("Invalid Selection");

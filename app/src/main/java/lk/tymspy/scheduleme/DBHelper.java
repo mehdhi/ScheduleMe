@@ -68,12 +68,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getDataByID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME + " where "+APPOINMENT_COLUMN_ID+"=" + id + "", null);
-        return res;
-    }
-
     public int numberOfRows() {
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
@@ -98,16 +92,29 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{id});
     }
 
-    public ArrayList getAllAppointments() {
-        ArrayList array_list = new ArrayList();
+    public ArrayList<Appointment> getAllAppointments() {
+        ArrayList<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
-        res.moveToFirst();
-        while (res.isAfterLast() == false) {
-            array_list.add(res.getString(res.getColumnIndex(APPOINMENT_COLUMN_TITLE)));
-            res.moveToNext();
+        Cursor c = db.rawQuery("select * from " + TABLE_NAME, null);
+        if(c!=null) {
+            int iRow = c.getColumnIndex(APPOINMENT_COLUMN_ID);
+            int iTime = c.getColumnIndex(APPOINMENT_COLUMN_TIME);
+            int iDetail = c.getColumnIndex(APPOINMENT_COLUMN_DETAIL);
+            int iTitle = c.getColumnIndex(APPOINMENT_COLUMN_TITLE);
+            int iDate = c.getColumnIndex(APPOINMENT_COLUMN_DATE);
+
+            for(c.moveToFirst() ; !c.isAfterLast() ; c.moveToNext()) {
+                Appointment row = new Appointment();
+                row.setId(c.getString(iRow));
+                row.setDate(c.getString(iDate));
+                row.setTime(c.getString(iTime));
+                row.setTitle(c.getString(iTitle));
+                row.setDetail(c.getString(iDetail));
+                list.add(row);
+            }
         }
-        return array_list;
+
+        return list;
     }
 
     public boolean checkName(String s) throws SQLException {
@@ -129,11 +136,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getDataByTitle( String s ){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME + " where "+APPOINMENT_COLUMN_TITLE+"=" + s + "", null);
-        return res;
-    }
 
     /**
      * This function retrieves all data on a particular given date
@@ -169,31 +171,43 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList getAllAppointmentsByTitle(String date) {
-        ArrayList<Appointment> list = new ArrayList<>();
+    public Appointment getAppointmentByTitle(String title) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] cols = new String[]{APPOINMENT_COLUMN_ID,APPOINMENT_COLUMN_TIME,APPOINMENT_COLUMN_TITLE,APPOINMENT_COLUMN_DETAIL};
-
-        Log.w("error", "Date = "+ date );
-        Cursor c = db.query(TABLE_NAME, cols,APPOINMENT_COLUMN_DATE+" = \""+ date + "\"", null, null, null, null);
+        String[] cols = new String[]{APPOINMENT_COLUMN_ID,APPOINMENT_COLUMN_DATE,APPOINMENT_COLUMN_TIME,APPOINMENT_COLUMN_TITLE,APPOINMENT_COLUMN_DETAIL};
+        Appointment row = new Appointment();
+        Log.w("error", "Title = "+ title );
+        Cursor c = db.query(TABLE_NAME, cols,APPOINMENT_COLUMN_TITLE+" = \""+ title + "\"", null, null, null, null);
 
         if(c!=null) {
-            int iRow = c.getColumnIndex(APPOINMENT_COLUMN_ID);
-            int iTime = c.getColumnIndex(APPOINMENT_COLUMN_TIME);
-            int iDetail = c.getColumnIndex(APPOINMENT_COLUMN_DETAIL);
-            int iTitle = c.getColumnIndex(APPOINMENT_COLUMN_TITLE);
 
-            for(c.moveToFirst() ; !c.isAfterLast() ; c.moveToNext()) {
-                Appointment row = new Appointment();
-                row.setId(c.getString(iRow));
-                row.setDate(date);
-                row.setTime(c.getString(iTime));
-                row.setTitle(c.getString(iTitle));
-                row.setDetail(c.getString(iDetail));
-                list.add(row);
-            }
+                row.setId(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_ID)));
+                row.setDate(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_DATE)));
+                row.setTime(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_TIME)));
+                row.setTitle(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_TITLE)));
+                row.setDetail(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_DETAIL)));
+
         }
-        return list;
+        return row;
+
+    }
+
+    public Appointment getAppointmentByID(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] cols = new String[]{APPOINMENT_COLUMN_ID,APPOINMENT_COLUMN_DATE,APPOINMENT_COLUMN_TIME,APPOINMENT_COLUMN_TITLE,APPOINMENT_COLUMN_DETAIL};
+        Appointment row = new Appointment();
+        Log.w("error", "Title = "+ id );
+        Cursor c = db.query(TABLE_NAME, cols,APPOINMENT_COLUMN_ID+" = \""+ id + "\"", null, null, null, null);
+
+        if(c!=null) {
+
+            row.setId(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_ID)));
+            row.setDate(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_DATE)));
+            row.setTime(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_TIME)));
+            row.setTitle(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_TITLE)));
+            row.setDetail(c.getString(c.getColumnIndex(APPOINMENT_COLUMN_DETAIL)));
+
+        }
+        return row;
 
     }
 
