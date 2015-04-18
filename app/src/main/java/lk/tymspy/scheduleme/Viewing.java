@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,7 +17,12 @@ import java.util.Iterator;
 public class Viewing extends ActionBarActivity implements View.OnClickListener {
 
     public static final String MODE = "MODE";
-    private int mode = 0;
+    public static final String MODE_EDIT = "MODE_EDIT";
+    public static final String MODE_MOVE = "MODE_MOVE";
+    public static final String MODE_DELETE = "MODE_DELETE";
+    public static final String MODE_TRANSLATE = "MODE_TRANSLATE";
+
+    private String mode = MODE_EDIT;
     private String date = "";
     private int selection;
     private ArrayList<Appointment> data = null;
@@ -30,13 +36,25 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
         tvDisplay = (TextView)findViewById(R.id.tvDisplay);
         tvDisplay.setMovementMethod(new ScrollingMovementMethod());
         tfId = (EditText)findViewById(R.id.tfId);
-        View btnView = findViewById(R.id.btnView);
+        Button btnView = (Button)findViewById(R.id.btnView);
         btnView.setOnClickListener(this);
 
         Intent i = getIntent();
-        mode = i.getIntExtra(MODE,0);
+        mode = i.getStringExtra(MODE);
         date = i.getStringExtra(Appointment.KEY_DATE);
 
+        if ( mode == MODE_EDIT ){
+            btnView.setText("View / Edit");
+        }
+        if ( mode == MODE_MOVE ){
+            btnView.setText("Move Appointment");
+        }
+        if ( mode == MODE_TRANSLATE ){
+            btnView.setText("Translate Appointment");
+        }
+        if ( mode == MODE_DELETE ){
+            btnView.setText("Delete");
+        }
         try {
             DBHelper sql = new DBHelper(this);
             data = sql.getAllAppointmentsByDate( date );
@@ -87,21 +105,25 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 {
 
                     if ( validate() ){
-                        if(mode == 1)
+                        if(mode == MODE_EDIT)
                         {
                             Intent i = new Intent(this, EditAppointment.class);
                             i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
                             startActivity(i);
                         }
-                        else if(mode == 2)
+                        else if(mode == MODE_MOVE)
                         {
                             Intent i = new Intent(this, MoveAppointment.class);
                             i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
                             startActivity(i);
                         }
-                        else if(mode == 3)
+                        else if(mode == MODE_TRANSLATE)
                         {
                             Intent i = new Intent(this, Translate.class);
+                            i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
+                            startActivity(i);
+                        } else if (mode == MODE_DELETE ){
+                            Intent i = new Intent(this, DeleteAppointment.class);
                             i.putExtra( Appointment.KEY_APPOINMENT, getSelectedAppointment( selection ) );
                             startActivity(i);
                         }

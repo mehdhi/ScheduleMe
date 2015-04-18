@@ -30,6 +30,9 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
         initializeButtons();
     }
 
+    /**
+     * This function initializes the Calendar
+     */
     public void initializeCalendar() {
         calendar = (CalendarView) findViewById(R.id.calendar);
 
@@ -64,6 +67,10 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
         });
     }
 
+    /**
+     * General Click Handler for components
+     * @param v View
+     */
     @Override
     public void onClick(View v) {
 
@@ -91,6 +98,9 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * This function initializes the Buttons
+     */
     private void initializeButtons() {
 
         btnCreate = (Button) findViewById(R.id.btnCreateAppointment );
@@ -113,69 +123,95 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * Click Handler for Create Appointment Button
+     */
+
     private void createAppointment(){
         Intent intent = new Intent(this, AddAppointment.class);
         if ( selectedDate == null ){
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            selectedDate = df.format(c.getTime());
+            selectedDate = getCurrentDate();
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
         startActivity(intent);
 
     }
+
+    /**
+     * Click Handler for View/Edit Appointment Button
+     */
 
     private void viewEditAppointment(){
         Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            selectedDate = df.format(c.getTime());
+            selectedDate = getCurrentDate();
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
-        intent.putExtra(Viewing.MODE, 1);
+        intent.putExtra(Viewing.MODE, Viewing.MODE_EDIT);
         startActivity(intent);
     }
+
+    /**
+     * Click Handler for Move Appointment Button
+     */
 
     private void moveAppointment(){
         Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            selectedDate = df.format(c.getTime());
+            selectedDate = getCurrentDate();
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
-        intent.putExtra(Viewing.MODE, 2);
+        intent.putExtra(Viewing.MODE, Viewing.MODE_MOVE);
         startActivity(intent);
     }
+
+    /**
+     * Click Handler for Delete Appointment Button
+     */
 
     private void deleteAppointment(){
         Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            selectedDate = df.format(c.getTime());
+            selectedDate = getCurrentDate();
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
-        intent.putExtra(Viewing.MODE, 3);
+        intent.putExtra(Viewing.MODE, Viewing.MODE_DELETE);
         startActivity(intent);
     }
+
+    /**
+     * Click Handler for Translate Appointment Button
+     */
+
+    private void translate(){
+        Intent intent = new Intent(this, Viewing.class);
+        if ( selectedDate == null ){
+            selectedDate = getCurrentDate();
+        }
+        intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        intent.putExtra(Viewing.MODE, Viewing.MODE_TRANSLATE);
+        startActivity(intent);
+    }
+
+    /**
+     * Click Handler for Search Appointment Button
+     */
 
     private void searchAppointment(){
         Intent intent = new Intent(this, Search.class);
         startActivity(intent);
     }
 
-    private void translate(){
-        Intent intent = new Intent(this, Translate.class);
-        if ( selectedDate == null ){
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-            selectedDate = df.format(c.getTime());
-        }
-        intent.putExtra(Appointment.KEY_DATE, selectedDate);
-        startActivity(intent);
+    /**
+     * This function returns the current date on the system
+     * @return String Current Date eg: 2013/01/30
+     */
+    private String getCurrentDate (){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        return new String( df.format(c.getTime()) );
     }
+
 
     @Override
     protected void onDestroy() {
