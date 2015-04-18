@@ -30,5 +30,6 @@
 
     <string name="title_activity_move">Move the Appointment</string>
     <string name="title_activity_viewing">Viewing</string>
+    <string name="update">Update</string>
 
 </resources>

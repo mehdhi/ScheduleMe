@@ -80,14 +80,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateAppointment(Integer id, String title, String detail, String date, String time) {
+    public boolean updateAppointment(String id, Appointment appointment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(APPOINMENT_COLUMN_TITLE, title);
-        contentValues.put(APPOINMENT_COLUMN_DETAIL, detail);
-        contentValues.put(APPOINMENT_COLUMN_DATE, date);
-        contentValues.put(APPOINMENT_COLUMN_TIME, time);
-        db.update(APPOINMENT_TABLE_NAME, contentValues, "id = ? ", new String[]{Integer.toString(id)});
+        contentValues.put(APPOINMENT_COLUMN_TITLE, appointment.getTitle());
+        contentValues.put(APPOINMENT_COLUMN_DETAIL, appointment.getDetail());
+        contentValues.put(APPOINMENT_COLUMN_DATE, appointment.getDate());
+        contentValues.put(APPOINMENT_COLUMN_TIME, appointment.getTime());
+        db.update(APPOINMENT_TABLE_NAME, contentValues, "id = ? ", new String[]{id});
         return true;
     }
 

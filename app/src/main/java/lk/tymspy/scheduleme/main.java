@@ -7,11 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class Main extends ActionBarActivity implements View.OnClickListener {
@@ -129,35 +126,38 @@ public class Main extends ActionBarActivity implements View.OnClickListener {
     }
 
     private void viewEditAppointment(){
-        Intent intent = new Intent(this, ViewEditAppoinment.class);
+        Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
             selectedDate = df.format(c.getTime());
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        intent.putExtra(Viewing.MODE, 1);
         startActivity(intent);
     }
 
     private void moveAppointment(){
-        Intent intent = new Intent(this, Move.class);
+        Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
             selectedDate = df.format(c.getTime());
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        intent.putExtra(Viewing.MODE, 2);
         startActivity(intent);
     }
 
     private void deleteAppointment(){
-        Intent intent = new Intent(this, DeleteAppoinment.class);
+        Intent intent = new Intent(this, Viewing.class);
         if ( selectedDate == null ){
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
             selectedDate = df.format(c.getTime());
         }
         intent.putExtra(Appointment.KEY_DATE, selectedDate);
+        intent.putExtra(Viewing.MODE, 3);
         startActivity(intent);
     }
 
