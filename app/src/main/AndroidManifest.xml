@@ -21,6 +21,10 @@
             android:label="@string/title_activity_add_appointment" >
         </activity>
         <activity
+            android:name=".EditAppointment"
+            android:label="@string/title_activity_view_edit_appoinment" >
+        </activity>
+        <activity
             android:name=".DeleteAppointment"
             android:label="@string/title_activity_delete_appoinment" >
         </activity>

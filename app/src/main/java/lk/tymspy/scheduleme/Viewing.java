@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class Viewing extends ActionBarActivity implements View.OnClickListener {
@@ -65,7 +64,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 int x = 0;
                 for ( Appointment app : data ){
                     Appointment row = data.get(x);
-                    result += ( x+1 ) +". " + row.getTitle() +"\n";
+                    result += ( x + 1 ) +". " + row.getTitle() +"\n";
                     x++;
                 }
                 tvDisplay.setText(result);
@@ -88,11 +87,13 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
      * @return String[] = {"ID","DATE","TIME","TITLE","DETAIL"}
      */
     private String[] getSelectedAppointment(int selection){
-        if (selection<1 && selection < data.size() ) return null;
-        Iterator iterator = data.iterator();
-        Integer x = 0;
-        while (iterator.hasNext() && x != selection ){
-            return Utility.convertAppointmentModelToString(data.get(selection));
+        if (selection<0 && selection >= data.size() ) return null;
+        int x = 0;
+        for ( Appointment app : data ){
+            if ( x == selection ){
+                return Utility.convertAppointmentModelToString(data.get(selection));
+            }
+            x++;
         }
         return null;
     }
@@ -108,28 +109,28 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                     if ( validate() ){
                         String[] selectedAppointment = getSelectedAppointment( selection );
                         if ( selectedAppointment != null ){
-                            if(mode == MODE_EDIT)
-                            {
-                                Intent i = new Intent(this, EditAppointment.class);
-                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
-                                startActivity(i);
-                            }
-                            else if(mode == MODE_MOVE)
-                            {
-                                Intent i = new Intent(this, MoveAppointment.class);
-                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
-                                startActivity(i);
-                            }
-                            else if(mode == MODE_TRANSLATE)
-                            {
-                                Intent i = new Intent(this, Translate.class);
-                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
-                                startActivity(i);
-                            } else if (mode == MODE_DELETE ){
+//                            if(mode == MODE_EDIT)
+//                            {
+//                                Intent i = new Intent( this, EditAppointment.class );
+//                                i.putExtra( Appointment.KEY_APPOINTMENT, selectedAppointment );
+//                                startActivity(i);
+//                            }
+//                            else if(mode == MODE_MOVE)
+//                            {
+//                                Intent i = new Intent(this, MoveAppointment.class);
+//                                i.putExtra( Appointment.KEY_APPOINTMENT, selectedAppointment );
+//                                startActivity(i);
+//                            }
+//                            else if(mode == MODE_TRANSLATE)
+//                            {
+//                                Intent i = new Intent(this, Translate.class);
+//                                i.putExtra( Appointment.KEY_APPOINTMENT, selectedAppointment );
+//                                startActivity(i);
+//                            } else if (mode == MODE_DELETE ){
                                 Intent i = new Intent(this, DeleteAppointment.class);
-                                i.putExtra( Appointment.KEY_APPOINMENT, selectedAppointment );
+                                i.putExtra( Appointment.KEY_APPOINTMENT, selectedAppointment );
                                 startActivity(i);
-                            }
+//                            }
                         } else {
                             Dialog dialog = new Dialog(this);
                             dialog.setTitle("Invalid Selection");
@@ -138,7 +139,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
 
                     } else  {
                         Dialog dialog = new Dialog(this);
-                        dialog.setTitle("Invalid Selection");
+                        dialog.setTitle("Select inside the range");
                         dialog.show();
                     }
 
@@ -158,7 +159,7 @@ public class Viewing extends ActionBarActivity implements View.OnClickListener {
                 return true;
             }
             return false;
-        } catch (Exception e){
+        } catch (NumberFormatException e){
             return false;
         }
     }

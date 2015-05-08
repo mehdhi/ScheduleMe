@@ -19,14 +19,14 @@ public class EditAppointment extends ActionBarActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_appoinment);
+        setContentView(R.layout.activity_edit_appointment);
         Intent g = getIntent();
-        appointment = Utility.convertAppointmentStringToModel( g.getStringArrayExtra( Appointment.KEY_APPOINMENT ) );
+        appointment = new Appointment();
+        appointment = Utility.convertAppointmentStringToModel( g.getStringArrayExtra( Appointment.KEY_APPOINTMENT) );
         this.initializeComponents();
     }
 
     private void initializeComponents() {
-        appointment = new Appointment();
         tfTitle = (EditText) findViewById(R.id.tfTitle);
         tfTime = (EditText) findViewById(R.id.tfTime);
         tfDetail = (EditText) findViewById(R.id.tfDetail);

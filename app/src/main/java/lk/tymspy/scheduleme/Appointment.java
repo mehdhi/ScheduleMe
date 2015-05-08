@@ -14,7 +14,7 @@ public class Appointment {
 
     public static final String KEY_DATE = "KEY_DATE";
     public static final String KEY_ID = "KEY_ID";
-    public static final String KEY_APPOINMENT = "KEY_APPOINMENT";
+    public static final String KEY_APPOINTMENT = "KEY_APPOINTMENT";
 
 
     //Items of Appointment

@@ -92,6 +92,21 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{id});
     }
 
+    public int deleteAppointmentByDate(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int count = 0;
+        ArrayList<Appointment> list = getAllAppointmentsByDate(date);
+        if (list.size()>0){
+            for ( Appointment app : list){
+                db.delete(TABLE_NAME,
+                        APPOINMENT_COLUMN_ID +" = ? ",
+                        new String[]{app.getId()});
+                count++;
+            }
+        }
+        return count;
+    }
+
     public ArrayList<Appointment> getAllAppointments() {
         ArrayList<Appointment> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();

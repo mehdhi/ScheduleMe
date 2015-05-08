@@ -1,5 +1,9 @@
 package lk.tymspy.scheduleme;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Mahdhi on 4/18/2015.
  */
@@ -23,5 +27,24 @@ public class Utility {
                 appointment.getTitle(),
                 appointment.getDetail()
         };
+    }
+
+    /**
+     * This function will convert String date(yyyy/MM/dd) into Long
+     * @param date
+     * @return longDate
+     * @throws ParseException
+     */
+
+    public static long convertStringDateToLong ( String date ) throws ParseException {
+        if (date == null ){
+            return -1;
+        }
+        String [] d = date.split("/");
+        String time = d[0]+"-"+d[1]+"-"+d[2]+" 00-00";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm");
+        Date dt = df.parse(time);
+        Long longDate = dt.getTime();
+        return longDate;
     }
 }
